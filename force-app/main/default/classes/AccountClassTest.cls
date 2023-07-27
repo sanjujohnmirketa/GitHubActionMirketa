@@ -3,7 +3,7 @@
 class AccountClassTest {
 	
     @isTest
-    
+    //Added to test action build
     Public 	static void functionA(){
         Account VarT = new Account();
         VarT.Name = 'Orkut';
