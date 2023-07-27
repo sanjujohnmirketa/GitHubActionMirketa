@@ -55,17 +55,7 @@ jobs:
         run: |
           # exit 1
           echo "test"
-      
-      - name: Upload SARIF file
-        # if: steps.pmd.outputs.violations != 0
-        uses: github/codeql-action/upload-sarif@v2
-        with:
-          sarif_file: pmd-report.sarif
-          
-      - name: Install the SFDX Git Delta Plugin
-        run: |
-          echo 'y' | sfdx plugins:install sfdx-git-delta
-      
+            
       - name: Generate the Delta Since Last Commit
         run: |
           mkdir delta
@@ -81,11 +71,7 @@ jobs:
         #run: |
           #sfdx force --help
           #sfdx force:auth:jwt:grant --clientid ${{ secrets.HUB_CONSUMER_KEY }} --jwtkeyfile  ${{ secrets.JWT_KEY_FILE }} --username ${{ secrets.HUB_USER_NAME }} --setdefaultdevhubusername -a HubOrg
-    
-      - name: Install SFDX CLI Scanner
-        run: |
-          echo 'y' | sfdx plugins:install @salesforce/sfdx-scanner
-          
+         
       - name: Run SFDX CLI Scanner
         run: |
           sfdx scanner:run -f html -t "force-app" -e "eslint,retire-js,pmd,cpd" -c "Design,Best Practices,Code Style,Performance,Security" --outfile ./reports/scan-reports.html
@@ -112,12 +98,6 @@ jobs:
       - name: 'Delete coverage file (temporary step)'
         run: rm ./tests/apex/test-result-707*-codecoverage.json
     
-      - name: 'Upload code coverage for Apex to Codecov.io'
-        uses: codecov/codecov-action@v3
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
-          flags: Apex
-      
       - name: 'Lint Lightning Web Components'
         run: |
           # npm run lint:lwc
