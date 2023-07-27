@@ -75,11 +75,7 @@ jobs:
           #sfdx force:auth:jwt:grant --clientid ${{ secrets.HUB_CONSUMER_KEY }} --jwtkeyfile  ${{ secrets.JWT_KEY_FILE }} --username ${{ secrets.HUB_USER_NAME }} --setdefaultdevhubusername -a HubOrg
       - name: Run Code Analysis
         run: sfdx scanner:run --format xml --target "force-app/main/default/classes"
-      
-      - name: Show Scanner Report
-        run:
-          cat scanner_results/scanner-report.xml
-
+    
       - name: Upload Scanner Results Artifact
         uses: actions/upload-artifact@v2
         with:
