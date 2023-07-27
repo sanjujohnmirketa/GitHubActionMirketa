@@ -1,0 +1,30 @@
+<apex:page standardController="Lead" extensions="ClientDataClass" >
+    <apex:form >
+    	
+        <apex:pageBlock title="Block1">
+        	<apex:pageBlockSection title="MyGreeting" columns="2">
+                <apex:pageblockSectionItem ><apex:commandButton value="Click Me" action="{!ShowGreeting}"/></apex:pageblockSectionItem>
+                <apex:outputLabel >{!Message}</apex:outputLabel>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        
+        <apex:pageBlock title="Standard Save">
+        	<apex:pageBlockSection title="LeadData" columns="2">
+                <apex:pageBlockSectionItem >First Name:<apex:inputField value="{!Lead.FirstName}"/></apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >Last Name:<apex:inputField value="{!Lead.LastName}" required="False"/></apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >Company:<apex:inputField value="{!Lead.Company}" required="False"/></apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem ><apex:commandButton value="Save" action="{!save}"/></apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        
+        <apex:pageBlock title="MyCustomSave">
+        	<apex:pageBlockSection title="LeadEntry" columns="2">
+                <apex:pageBlockSectionItem >First Name:<apex:inputText value="{!UserFirstName}"/></apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >Last Name:<apex:inputText value="{!UserLastName}" required="False"/></apex:pageBlockSectionItem>     
+                <apex:pageBlockSectionItem ><apex:commandButton value="Save" action="{!LeadEntry}"/></apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    
+    </apex:form>
+    
+</apex:page>

@@ -1,0 +1,16 @@
+<apex:page controller="ExampleClass">
+	<apex:form >
+    	<apex:pageBlock title="My Form">
+        	<apex:pageBlockSection title="Enter Full Name">
+                <apex:outputLabel > First Name: </apex:outputLabel>
+                <apex:inputText value="{!FirstName}"/>
+                <apex:outputLabel > Middle Name: </apex:outputLabel>
+                <apex:inputText value="{!MiddleName}"/>
+                <apex:outputLabel > Last Name: </apex:outputLabel>
+                <apex:inputText value="{!LastName}"/>
+                <apex:commandButton value="Click me" action="{!ShowMessage}"/>
+                <apex:outputLabel > {!messages} </apex:outputLabel>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

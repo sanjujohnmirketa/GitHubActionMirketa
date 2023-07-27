@@ -1,0 +1,18 @@
+<apex:page controller="Calculator">
+	<apex:form >
+        <apex:pageBlock title="Number page">
+            <apex:pageBlockSection title="Enter Numbers" columns="4">
+            <apex:outputLabel >Enter NumA: </apex:outputLabel>
+                <apex:inputText value="{!NumA}"/>
+            <apex:outputLabel >Enter NumB: </apex:outputLabel>
+                <apex:inputText value="{!NumB}"/>
+                <apex:commandButton value="SUM" action="{!Addition}" />
+				<apex:commandButton value="SUB" action="{!Submission}"/>
+				<apex:commandButton value="Mul" action="{!Multiplication}"/>                
+				<apex:commandButton value="Div" action="{!Division}"/>
+            
+            	<apex:outputLabel >{!message}</apex:outputLabel>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

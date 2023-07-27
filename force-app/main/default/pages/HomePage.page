@@ -1,0 +1,17 @@
+<apex:page >
+    <apex:form >
+        <apex:pageblock title="Choose option">
+           
+           
+           <apex:pageBlockSection title="My Content Section" columns="2">
+
+           	 	<apex:commandButton Value="Agent" action="{!AgentPage}"/>
+            	<apex:commandButton Value="PolicyHolder" action="{!PolicyHolderDat}"/>
+            	<apex:commandButton Value="LifeInsurance" action="{!LifeIns}"/>
+            	<apex:commandButton Value="MotorInsurance" action="{!MotorIns}"/>
+           </apex:pageBlockSection>      
+            
+         </apex:pageblock>
+    </apex:form>
+    
+</apex:page>

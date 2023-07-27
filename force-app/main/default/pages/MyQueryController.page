@@ -1,0 +1,17 @@
+<apex:page controller="MyQueryController">
+    <apex:form >
+        <apex:pageBlock title="My Page Content">
+           
+                <apex:pageBlockButtons >
+                    <apex:commandButton value="Show Data" action="{!ShowData}" reRender="Table"/>
+                </apex:pageBlockButtons>
+                
+                <apex:pageblockTable value="{!Contactlist}" var="contact" id="Table">
+                    <apex:column value="{!contact.Name}"/>
+                    <apex:column value="{!contact.MailingCity}"/>
+                    <apex:column value="{!contact.Phone}"/>
+                </apex:pageBlockTable>
+            
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

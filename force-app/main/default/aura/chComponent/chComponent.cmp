@@ -1,0 +1,10 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global">
+    <!--registering the event component event in the child component-->
+    <aura:registerEvent name="cmpEvent" type="c:componentEvent"/>
+
+    <aura:attribute name="messageString" type="String"/>
+    <!--Fire the event on button click-->
+    
+    <lightning:input label="message" value="{!v.messageString}"/>
+    <lightning:button label="Fire Component Event" onclick="{!c.fireEvent}"/>
+</aura:component>

@@ -1,0 +1,17 @@
+<apex:page controller="Naming">
+    <apex:form >
+        <apex:pageBlock title="Data page">
+            <apex:pageBlockSection title="Name Page" columns="4">
+                <apex:outputLabel > Enter First Name:</apex:outputLabel>
+                <apex:inputText value="{!FirstName}"/>
+                <apex:outputLabel > Enter Last Name:</apex:outputLabel>
+                <apex:inputText value="{!LastName}"/>
+                <apex:commandButton value="FirstName" action="{!Message1}" />
+                <apex:commandButton value="FullName" action="{!Message2}" />
+                <apex:commandButton value="Reset" action="{!Reset}" />
+               
+                <b><apex:outputLabel > {!Message}</apex:outputLabel></b>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

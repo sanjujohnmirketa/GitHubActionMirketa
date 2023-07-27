@@ -1,0 +1,15 @@
+<apex:page controller="Sample123" tabStyle="Account">
+	<apex:form >
+    	<apex:pageBlock id="pg">
+            <apex:pageBlockSection >
+            	<apex:pageBlockTable value="{!ListWrapper}" var="a">
+            		<apex:column >
+                    	<apex:inputCheckbox value="{!a.checkbool}"/>
+            			</apex:column>
+            			<apex:column value="{!a.acct.Name}"/>
+            			<apex:column value="{!a.acct.Industry}"/>
+            	</apex:pageBlockTable>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

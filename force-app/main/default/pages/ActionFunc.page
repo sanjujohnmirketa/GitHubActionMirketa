@@ -1,0 +1,12 @@
+<apex:page controller="APEXForAction" tabStyle="Account">
+			<apex:form >
+			<apex:actionFunction name="priorityChangedJavaScript" action="{!priorityChanged}" rerender="out" />	
+		<apex:pageBlock >         	 
+             <apex:pageBlockSection title="Of you will select high priority customer then fax is shown" id="out" columns="2" >
+						<apex:inputField value="{!acc.CustomerPriority__c}" onchange="priorityChangedJavaScript()" />
+			<!---Add onclick JS event, triggers prioritychanged action Function--->
+					<apex:inputField value="{!acc.Fax}" rendered="{!showFax}"/>
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

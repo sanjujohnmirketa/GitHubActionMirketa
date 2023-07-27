@@ -1,0 +1,22 @@
+<apex:page controller="MarriotClass">
+    <apex:form >
+        <apex:pageBlock >
+          <apex:pageBlockSection title="select the Hotel">
+             <apex:selectList size="1" value="{!selectedname}"> 
+                <apex:selectOptions value="{!selectedaccnamefields}"/>  
+             </apex:selectList>
+          </apex:pageBlockSection> 
+            
+          <apex:pageBlockSection Title="Customer Information">
+                <apex:outputLabel > First Name: </apex:outputLabel>
+                <apex:inputText value="{!FName}"/>
+                <apex:outputLabel > Last Name: </apex:outputLabel>
+                <apex:inputText value="{!LName}"/>
+                <apex:outputLabel > Rating(10): </apex:outputLabel>
+                <apex:inputText value="{!Rating}"/>
+                    <apex:commandButton value="Save" action="{!GuestContact}"/>
+         
+          </apex:pageBlockSection> 
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

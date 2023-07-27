@@ -1,0 +1,6 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global">
+    <aura:registerEvent name="compEvent" type="c:cmpEvent"/>
+    <aura:attribute name="messagestring" type="String"/>
+    <lightning:input label="message" value="{!v.messagestring}"/>
+    <lightning:button label="Fire component Event" onClick="{!c.fireEvent}"/>
+</aura:component>
