@@ -74,7 +74,7 @@ jobs:
           #sfdx force --help
           #sfdx force:auth:jwt:grant --clientid ${{ secrets.HUB_CONSUMER_KEY }} --jwtkeyfile  ${{ secrets.JWT_KEY_FILE }} --username ${{ secrets.HUB_USER_NAME }} --setdefaultdevhubusername -a HubOrg
       - name: Run Code Analysis
-        run: sfdx scanner:run --format xml
+        run: sfdx scanner:run --format xml --target "force-app/main/default/classes"
 
       - name: 'Run Apex tests'
         run: sfdx force:apex:execute -f ./tests/apex -u myPersonalOrg
