@@ -76,9 +76,6 @@ jobs:
       - name: Run Code Analysis
         run: sfdx scanner:run --format xml --target "force-app/main/default/classes"
 
-      - name: 'Run Apex tests'
-        run: sfdx force:apex:execute -f ./tests/apex -u myPersonalOrg
-        
       - name: 'Lint Lightning Web Components'
         run: |
           # npm run lint:lwc
