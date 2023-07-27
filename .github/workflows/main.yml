@@ -55,13 +55,7 @@ jobs:
         run: |
           # exit 1
           echo "test"
-            
-      - name: Generate the Delta Since Last Commit
-        run: |
-          mkdir delta
-          sfdx sgd:source:delta --to "HEAD" --from "HEAD~1" --output "./delta" -i .sgdignore -d
-          cat delta/package/package.xml
-      
+                  
       #- name: Decrypt server key
         #run: |
             #Decrypt server key
