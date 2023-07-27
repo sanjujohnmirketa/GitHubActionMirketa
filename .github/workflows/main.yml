@@ -51,10 +51,18 @@ jobs:
 
       # Check for PMD violations
       - name: 'Check for PMD violations'
-        # if: steps.pmd.outputs.violations != 0
         run: |
-          # exit 1
-          echo "test"
+          echo "PMD violations count: ${{ steps.pmd.outputs.violations }}"
+          echo "Writing PMD violations to file"
+          echo "ruleSet,file,line,description" > pmd_violations.csv
+          echo "${{ steps.pmd.outputs.violationsCsv }}" >> pmd_violations.csv
+
+      # Upload PMD violations report as an artifact
+      - name: Upload PMD Violations Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: pmd-violations
+          path: pmd_violations.csv
                   
       #- name: Decrypt server key
         #run: |
@@ -65,26 +73,6 @@ jobs:
         #run: |
           #sfdx force --help
           #sfdx force:auth:jwt:grant --clientid ${{ secrets.HUB_CONSUMER_KEY }} --jwtkeyfile  ${{ secrets.JWT_KEY_FILE }} --username ${{ secrets.HUB_USER_NAME }} --setdefaultdevhubusername -a HubOrg
-         
-      - name: Run SFDX CLI Scanner
-        run: |
-          sfdx scanner:run -f html -t "force-app" -e "eslint,retire-js,pmd,cpd" -c "Design,Best Practices,Code Style,Performance,Security" --outfile ./reports/scan-reports.html
-          
-      - uses: actions/upload-artifact@v3
-        with:
-          name: cli-scan-report
-          path: reports/scan-reports.html
-                    
-      - name: Install the JEST Plugin
-        run: |
-          # npm install
-          npm install @salesforce/sfdx-lwc-jest --save-dev
-          
-      #- name: Deploy code to Salesforce Org
-        #if: github.event.pull_request.merged == true
-        #run: |
-          #echo "Deploying Code to Org"
-          #sfdx force:source:deploy -x delta/package/package.xml -u HubOrg # --postdestructivechanges destructiveChanges/destructiveChanges.xml
 
       - name: 'Run Apex tests'
         run: sfdx force:apex:test:run -c -r human -d ./tests/apex -w 20 -u HubOrg
