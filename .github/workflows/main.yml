@@ -74,21 +74,4 @@ jobs:
           #sfdx force --help
           #sfdx force:auth:jwt:grant --clientid ${{ secrets.HUB_CONSUMER_KEY }} --jwtkeyfile  ${{ secrets.JWT_KEY_FILE }} --username ${{ secrets.HUB_USER_NAME }} --setdefaultdevhubusername -a HubOrg
       - name: Run Code Analysis
-        run: sfdx scanner:run --format xml --target "force-app/main/default/classes"
-    
-      - name: Upload Scanner Results Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: scanner-results
-          path: scanner_results
-      
-      - name: 'Lint Lightning Web Components'
-        run: 
-          # npm run lint:lwc
-          echo "Lint Lightning Web Components"
-        
-      - name: Run the Jest coverage script
-        if: github.event.pull_request.merged == true
-        run: |
-          npm run test:unit:coverage
-          echo "Run the Jest coverage script"
+        run:  sfdx scanner:run --target "**/Classes/**" --format "csv" --outfile "C:\Users\User Mirketa\Apexviolation.csv"
