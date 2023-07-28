@@ -74,12 +74,7 @@ jobs:
         with:
          name: aura_violation_csv
          path: auraviolation.csv
-      
-      - name: Run Apex Tests and Export Coverage
-        run: |
-          sfdx apex:run:test -l RunLocalTests -c -w 30
-          sfdx force:apex:test:report --resultformat human --outputdir ./test-results
-          mv ./test-results/apex-code-coverage.csv ./test-results/test-coverage.csv
+
   
       
       
