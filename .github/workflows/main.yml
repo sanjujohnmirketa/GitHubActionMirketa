@@ -74,4 +74,4 @@ jobs:
           #sfdx force --help
           #sfdx force:auth:jwt:grant --clientid ${{ secrets.HUB_CONSUMER_KEY }} --jwtkeyfile  ${{ secrets.JWT_KEY_FILE }} --username ${{ secrets.HUB_USER_NAME }} --setdefaultdevhubusername -a HubOrg
       - name: Run Code Analysis
-        run:  sfdx scanner:run --target "**/Classes/**" --format "csv" --outfile "C:\Users\User Mirketa\Apexviolation.csv"
+        run:  sfdx scanner:run --target "force-app/main/default/classes" --format "csv" --outfile "C:\Users\User Mirketa\Apexviolation.csv"
