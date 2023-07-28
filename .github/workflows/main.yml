@@ -57,7 +57,7 @@ jobs:
          name: apex_violation_csv
          path: Apexviolation.csv
       
-      - name: Run Code Analysis
+      - name: lw Code Analysis
         run:  sfdx scanner:run --target "force-app/main/default/lwc" --format "csv" --outfile "lwcviolation.csv"
 
       - name: Upload the CSV file as an artifact
@@ -66,7 +66,7 @@ jobs:
          name: lwc_violation_csv
          path: lwcviolation.csv
       
-      - name: Run Code Analysis
+      - name: Aura Code Analysis
         run:  sfdx scanner:run --target "force-app/main/default/aura" --format "csv" --outfile "auraviolation.csv"
 
       - name: Upload the CSV file as an artifact
@@ -77,15 +77,10 @@ jobs:
       
       - name: Run Apex Tests and Export Coverage
         run: |
-          sfdx force:apex:test:run -l RunLocalTests -c -w 30
+          sfdx apex:run:test -l RunLocalTests -c -w 30
           sfdx force:apex:test:report --resultformat human --outputdir ./test-results
           mv ./test-results/apex-code-coverage.csv ./test-results/test-coverage.csv
-
-      - name: Upload Test Coverage Report
-        uses: actions/upload-artifact@v2
-        with:
-          name: test-coverage-report
-          path: test-results/test-result.json
+  
       
       
       
