@@ -1,5 +1,4 @@
 <aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global">
-    <!--registering the event component event in the child component-->
     <aura:registerEvent name="cmpEvent" type="c:componentEvent"/>
 
     <aura:attribute name="messageString" type="String"/>
