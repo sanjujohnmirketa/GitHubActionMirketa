@@ -51,6 +51,12 @@ jobs:
       - name: Run Code Analysis
         run:  sfdx scanner:run --target "force-app/main/default/classes" --format "csv" --outfile "Apexviolation.csv"
       
+      # install SFDX-Git-Delta plugin - https://github.com/scolladon/sfdx-git-delta
+      - name: 'Installing sfdx git delta'
+        run: |
+              echo y | sfdx plugins:install sfdx-git-delta
+              sfdx plugins
+              
       - name: 'Create delta packages for new, modified or deleted metadata'
         run: |
               mkdir changed-sources
