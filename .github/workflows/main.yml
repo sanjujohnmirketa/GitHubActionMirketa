@@ -51,6 +51,11 @@ jobs:
       - name: Run Code Analysis
         run:  sfdx scanner:run --target "force-app/main/default/classes" --format "csv" --outfile "Apexviolation.csv"
       
+      - name: 'Create delta packages for new, modified or deleted metadata'
+        run: |
+              mkdir changed-sources
+              sfdx sgd:source:delta --to "HEAD" --from "origin/${{ github.base_ref }}" --output changed-sources/ --generate-delta --source force-app/
+
       - name: Upload the CSV file as an artifact
         uses: actions/upload-artifact@v2
         with:
