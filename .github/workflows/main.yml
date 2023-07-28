@@ -39,32 +39,7 @@ jobs:
         run: |
           npm install
           npm install sfdx-cli --global
-          
-      # Run PMD scan
-      - name: 'Run PMD scan'
-        uses: pmd/pmd-github-action@v1
-        id: pmd
-        with:
-            sourcePath: 'force-app'
-            rulesets: 'ruleset.xml'
-            analyzeModifiedFilesOnly: false
-
-      # Check for PMD violations
-      - name: 'Check for PMD violations'
-        run: |
-          echo "PMD violations count: ${{ steps.pmd.outputs.violations }}"
-          echo "Writing PMD violations to file"
-          echo "ruleSet,file,line,description" > pmd_violations.csv
-          echo "${{ steps.pmd.outputs.violationsCsv }}" >> pmd_violations.csv
-
-      # Upload PMD violations report as an artifact
-      - name: Upload PMD Violations Report
-        uses: actions/upload-artifact@v2
-        with:
-          name: pmd-violations
-          path: pmd_violations.csv
-                  
-      #- name: Decrypt server key
+        #- name: Decrypt server key
         #run: |
             #Decrypt server key
            # openssl enc -nosalt -aes-256-cbc -d -in ${{ secrets.ENCRYPTION_KEY_FILE }} -out ${{ secrets.JWT_KEY_FILE }} -base64 -K ${{ secrets.DECRYPTION_KEY }} -iv ${{ secrets.DECRYPTION_IV }}
@@ -81,3 +56,36 @@ jobs:
         with:
          name: apex_violation_csv
          path: Apexviolation.csv
+      
+      - name: Run Code Analysis
+        run:  sfdx scanner:run --target "force-app/main/default/lwc" --format "csv" --outfile "lwcviolation.csv"
+
+      - name: Upload the CSV file as an artifact
+        uses: actions/upload-artifact@v2
+        with:
+         name: lwc_violation_csv
+         path: lwcviolation.csv
+      
+      - name: Run Code Analysis
+        run:  sfdx scanner:run --target "force-app/main/default/aura" --format "csv" --outfile "auraviolation.csv"
+
+      - name: Upload the CSV file as an artifact
+        uses: actions/upload-artifact@v2
+        with:
+         name: aura_violation_csv
+         path: auraviolation.csv
+      
+      - name: Run Apex Tests and Export Coverage
+        run: |
+          sfdx force:apex:test:run -l RunLocalTests -c -w 30
+          sfdx force:apex:test:report --resultformat human --outputdir ./test-results
+          mv ./test-results/apex-code-coverage.csv ./test-results/test-coverage.csv
+
+      - name: Upload Test Coverage Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-coverage-report
+          path: test-results/test-result.json
+      
+      
+      
