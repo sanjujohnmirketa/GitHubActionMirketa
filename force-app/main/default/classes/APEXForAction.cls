@@ -4,7 +4,7 @@ public class APEXForAction {
 			
 			Public APEXForAction(){
 				Acc= new Account();
-				showFax= true;
+				showFax= false;
 				
 			}
 			
