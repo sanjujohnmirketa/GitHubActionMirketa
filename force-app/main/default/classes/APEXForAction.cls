@@ -4,7 +4,8 @@ public class APEXForAction {
 			
 			Public APEXForAction(){
 				Acc= new Account();
-				showFax= false;
+				showFax= true;
+				
 			}
 			
 			Public void PriorityChanged(){
