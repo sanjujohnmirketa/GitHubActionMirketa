@@ -85,7 +85,15 @@ jobs:
         with:
          name: aura_violation_csv
          path: auraviolation.csv
+         
+      - name: Generate docs
+        run: npm run docs
 
+      - name: Commit updated docs
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: 'docs/'
+          message: 'Auto-update generated docs'
   
       
       
